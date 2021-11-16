@@ -1,8 +1,25 @@
-import React from "react";
+import * as data from "../data";
 
 function HomePage() {
   return (
-      <div>homePage</div>
+    <main className="container">
+      <section className="productList">
+        {data.products.map((product) => {
+          return (
+            <div className="product" key={product.name}>
+              <div className="image">
+                <img src={product.image} alt={product.name} />
+              </div>
+              <div className="content">
+                <p className="name">{product.name}</p>
+                <p className="price">{product.price} $</p>
+              </div>
+              <button className="btn btn-primary">Add to cart</button>
+            </div>
+          );
+        })}
+      </section>
+    </main>
   );
 }
 
