@@ -1,8 +1,11 @@
 import * as data from "../data";
+import { useCartActions } from "../providers/CartProvider";
 
 function HomePage() {
-  const addToCart = (p) => {
-    console.log(p);
+  const dispatch = useCartActions();
+
+  const addToCart = (product) => {
+    dispatch({ type: "ADD_TO_CART", payload: product });
   };
   return (
     <main className="container">
