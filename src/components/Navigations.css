@@ -23,3 +23,20 @@ header ul li a {
   color: white;
   border-radius: 0.5rem;
 }
+.badge-container {
+  position: relative;
+  display: flex;
+}
+.badge-container span {
+  position: absolute;
+  left: 6rem;
+  bottom: 1.7rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  height: 2rem;
+  width: 2rem;
+  background-color: royalblue;
+}
