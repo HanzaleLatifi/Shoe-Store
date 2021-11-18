@@ -14,7 +14,11 @@ const cartReducer = (state, action) => {
         updatedCart[foundIndex] = updatedItem;
       }
 
-      return { ...state, cart: updatedCart };
+      return {
+        ...state,
+        cart: updatedCart,
+        total: state.total + action.payload.price,
+      };
     }
     case "DEC_PRODUCT": {
       const updatedCart = [...state.cart];
@@ -27,11 +31,19 @@ const cartReducer = (state, action) => {
         const filteredCart = updatedCart.filter(
           (item) => item.id !== action.payload.id
         );
-        return { ...state, cart: filteredCart };
+        return {
+          ...state,
+          cart: filteredCart,
+          total: state.total - action.payload.price,
+        };
       } else {
         updatedItem.quantity--;
         updatedCart[foundIndex] = updatedItem;
-        return { ...state, cart: updatedCart };
+        return {
+          ...state,
+          cart: updatedCart,
+          total: state.total - action.payload.price,
+        };
       }
     }
 

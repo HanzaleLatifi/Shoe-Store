@@ -3,7 +3,7 @@ import { useCart, useCartActions } from "../providers/CartProvider";
 import "./CartPage.css";
 
 function CartPage() {
-  const { cart } = useCart();
+  const { cart, total } = useCart();
   const dispatch = useCartActions();
 
   const incHandler = (item) => {
@@ -39,7 +39,7 @@ function CartPage() {
         )}
       </section>
 
-      <section className="CartDetail">more detail</section>
+      <section className="CartDetail">Total Price : {total} $</section>
     </main>
   );
 }
