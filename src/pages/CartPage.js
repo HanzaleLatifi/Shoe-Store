@@ -28,9 +28,13 @@ function CartPage() {
                 <div>{item.name}</div>
                 <div>{item.price * item.quantity} $</div>
                 <div className="btn-container">
-                  <button onClick={() => incHandler(item)}>Add</button>
+                  <button className="IncBtn" onClick={() => incHandler(item)}>
+                    +
+                  </button>
                   <button>{item.quantity}</button>
-                  <button onClick={() => decHandler(item)}>remove</button>
+                  <button className="DecBtn" onClick={() => decHandler(item)}>
+                    -
+                  </button>
                 </div>
               </div>
             );
@@ -60,7 +64,6 @@ const CartSummery = ({ cart, total }) => {
         <p>net price : {netPrice} $</p>
       </div>
       <Link to="/checkout">
-        {" "}
         <button
           className="btn btn-primary"
           style={{ width: "100%", padding: ".4rem .6rem", marginTop: "2rem" }}
