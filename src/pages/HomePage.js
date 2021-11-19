@@ -1,11 +1,13 @@
 import * as data from "../data";
 import { useCartActions } from "../providers/CartProvider";
+import { toast } from "react-toastify";
 
 function HomePage() {
   const dispatch = useCartActions();
 
   const addToCart = (product) => {
     dispatch({ type: "ADD_TO_CART", payload: product });
+    toast.success(`${product.name} Added To Cart`);
   };
   return (
     <main className="container">
