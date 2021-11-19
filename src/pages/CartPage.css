@@ -42,3 +42,12 @@
   max-height: 35rem;
   box-shadow: 0 0 0.5rem gainsboro;
 }
+.CartDetail h4 {
+  margin-bottom: 2rem;
+}
+.CartDetail div p {
+  margin: 0.5rem 0;
+}
+.CartDetail div hr {
+  color: #ccc;
+}

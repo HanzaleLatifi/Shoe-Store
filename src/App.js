@@ -7,6 +7,7 @@ import Layout from "./layout/Layout";
 import CartProvider from "./providers/CartProvider";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import CheckoutPage from "./pages/CheckoutPage";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Layout>
           <ToastContainer />
           <Switch>
+            <Route path="/checkout" component={CheckoutPage} />
             <Route path="/cart" component={CartPage} />
             <Route path="/" exact={true} component={HomePage} />
           </Switch>

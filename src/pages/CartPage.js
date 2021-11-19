@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useCart, useCartActions } from "../providers/CartProvider";
 import "./CartPage.css";
 
@@ -38,10 +39,35 @@ function CartPage() {
           <p>cart is empty...!</p>
         )}
       </section>
-
-      <section className="CartDetail">Total Price : {total} $</section>
+      <CartSummery cart={cart} total={total} />
     </main>
   );
 }
 
 export default CartPage;
+
+const CartSummery = ({ cart, total }) => {
+  const netPrice = cart.length
+    ? cart.reduce((acc, curr) => acc + curr.quantity * curr.offPrice, 0)
+    : "0";
+  return (
+    <section className="CartDetail">
+      <h4>Cart Summery</h4>
+      <div>
+        <p>orginal price : {total} $</p>
+        <p>discount : {total - netPrice} $</p>
+        <hr />
+        <p>net price : {netPrice} $</p>
+      </div>
+      <Link to="/checkout">
+        {" "}
+        <button
+          className="btn btn-primary"
+          style={{ width: "100%", padding: ".4rem .6rem", marginTop: "2rem" }}
+        >
+          checkout
+        </button>
+      </Link>
+    </section>
+  );
+};
