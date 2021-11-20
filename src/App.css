@@ -14,6 +14,10 @@
   color: white;
   background-color: blueviolet;
 }
+button:disabled {
+  background: #ccc;
+  color: rgb(146, 146, 146);
+}
 .productList {
   margin-top: 5rem;
   max-width: 1170px;
