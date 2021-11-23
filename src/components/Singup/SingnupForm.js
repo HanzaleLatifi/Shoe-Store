@@ -5,6 +5,7 @@ import Input from "../../common/Input";
 import { signupUser } from "../../services/signupUser";
 import "./SiqnupForm.css";
 import { useState } from "react";
+import { useAuthAction } from "../../providers/AuthProvider";
 
 const initialValues = {
   name: "",
@@ -26,18 +27,20 @@ const validationSchema = Yup.object({
 
 function SingnupForm({ history }) {
   const [error, seterror] = useState(null);
+  const setAuth = useAuthAction();
 
   const onSubmit = async (values) => {
     const { name, email, phoneNumber, password } = values;
-    const data = {
+    const userdata = {
       name,
       email,
       password,
       phoneNumber,
     };
     try {
-      await signupUser(data);
-      seterror(null);
+      const { data } = await signupUser(userdata);
+      console.log(data);
+      setAuth(data);
       history.push("/");
     } catch (error) {
       if (error.response) {

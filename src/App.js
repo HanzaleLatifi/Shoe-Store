@@ -11,22 +11,25 @@ import CheckoutPage from "./pages/CheckoutPage";
 import LoginForm from "./components/Login/LoginForm";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
+import AuthProvider from "./providers/AuthProvider";
 
 function App() {
   return (
     <Router>
-      <CartProvider>
-        <Layout>
-          <ToastContainer />
-          <Switch>
-            <Route path="/signup" component={SignupPage} />
-            <Route path="/login" component={LoginPage} />
-            <Route path="/checkout" component={CheckoutPage} />
-            <Route path="/cart" component={CartPage} />
-            <Route path="/" exact={true} component={HomePage} />
-          </Switch>
-        </Layout>
-      </CartProvider>
+      <AuthProvider>
+        <CartProvider>
+          <Layout>
+            <ToastContainer />
+            <Switch>
+              <Route path="/signup" component={SignupPage} />
+              <Route path="/login" component={LoginPage} />
+              <Route path="/checkout" component={CheckoutPage} />
+              <Route path="/cart" component={CartPage} />
+              <Route path="/" exact={true} component={HomePage} />
+            </Switch>
+          </Layout>
+        </CartProvider>
+      </AuthProvider>
     </Router>
   );
 }

@@ -1,9 +1,11 @@
 import { NavLink, withRouter } from "react-router-dom";
+import { useAuth } from "../providers/AuthProvider";
 import { useCart } from "../providers/CartProvider";
 import "./Navigations.css";
 
 function Navigations() {
   const { cart } = useCart();
+  const userData = useAuth();
 
   return (
     <header>
@@ -25,7 +27,7 @@ function Navigations() {
             </li>
             <li>
               <NavLink to="/contact" activeClassName="NavActive">
-                contact us
+                Contact us
               </NavLink>
             </li>
           </div>
@@ -37,7 +39,9 @@ function Navigations() {
               <span>{cart.length}</span>
             </li>
             <li>
-              <NavLink to="/signup"> Login/Signup </NavLink>
+              <NavLink to={userData ? "/profile" : "/login"}>
+                {userData ? "Profile" : "Login/Signup"}
+              </NavLink>
             </li>
           </div>
         </ul>

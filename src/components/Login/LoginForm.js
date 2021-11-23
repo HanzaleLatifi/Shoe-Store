@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import Input from "../../common/Input";
 import { useState } from "react";
 import { loginUser } from "../../services/loginUser";
+import { useAuthAction } from "../../providers/AuthProvider";
 
 const initialValues = {
   email: "",
@@ -17,12 +18,14 @@ const validationSchema = Yup.object({
 
 function LoginForm({ history }) {
   const [error, setError] = useState(null);
+  const setAuth = useAuthAction();
 
   const onSubmit = async (values) => {
     try {
       const { data } = await loginUser(values);
-      history.push("/");
+      setAuth(data);
       setError(null);
+      history.push("/");
     } catch (error) {
       setError(error.response.data.message);
     }
