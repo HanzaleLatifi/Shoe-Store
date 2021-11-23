@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import * as Yup from "yup";
 import Input from "../../common/Input";
 import { signupUser } from "../../services/signupUser";
@@ -24,7 +24,7 @@ const validationSchema = Yup.object({
   phoneNumber: Yup.string().required("is required"),
 });
 
-function SingnupForm() {
+function SingnupForm({ history }) {
   const [error, seterror] = useState(null);
 
   const onSubmit = async (values) => {
@@ -38,6 +38,7 @@ function SingnupForm() {
     try {
       await signupUser(data);
       seterror(null);
+      history.push("/");
     } catch (error) {
       if (error.response) {
         seterror(error.response.data.message);
@@ -91,4 +92,4 @@ function SingnupForm() {
   );
 }
 
-export default SingnupForm;
+export default withRouter(SingnupForm);
