@@ -9,17 +9,37 @@ function Navigations() {
     <header>
       <nav>
         <ul>
-          <li>
-            <NavLink to="/" activeClassName="NavActive" exact>
-              Home
-            </NavLink>
-          </li>
-          <li className="badge-container">
-            <NavLink to="/cart" activeClassName="NavActive">
-              Cart
-            </NavLink>
-            <span>{cart.length}</span>
-          </li>
+          <div>
+            <li className="logo">Shoe Store</li>
+          </div>
+          <div>
+            <li>
+              <NavLink to="/" activeClassName="NavActive" exact>
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/about" activeClassName="NavActive">
+                About us
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/contact" activeClassName="NavActive">
+                contact us
+              </NavLink>
+            </li>
+          </div>
+          <div>
+            <li className="badge-container">
+              <NavLink to="/cart" activeClassName="NavActive">
+                Cart
+              </NavLink>
+              <span>{cart.length}</span>
+            </li>
+            <li>
+              <NavLink to="/signup"> Login/Signup </NavLink>
+            </li>
+          </div>
         </ul>
       </nav>
     </header>
