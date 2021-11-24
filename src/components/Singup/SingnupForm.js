@@ -6,6 +6,7 @@ import { signupUser } from "../../services/signupUser";
 import "./SiqnupForm.css";
 import { useState } from "react";
 import { useAuthAction } from "../../providers/AuthProvider";
+import { useQuery } from "../../hooks/useQuery";
 
 const initialValues = {
   name: "",
@@ -28,6 +29,8 @@ const validationSchema = Yup.object({
 function SingnupForm({ history }) {
   const [error, seterror] = useState(null);
   const setAuth = useAuthAction();
+  const query = useQuery();
+  const redirect = query.get("redirect") || "/";
 
   const onSubmit = async (values) => {
     const { name, email, phoneNumber, password } = values;
@@ -41,7 +44,7 @@ function SingnupForm({ history }) {
       const { data } = await signupUser(userdata);
       console.log(data);
       setAuth(data);
-      history.push("/");
+      history.push(redirect);
     } catch (error) {
       if (error.response) {
         seterror(error.response.data.message);
@@ -89,7 +92,7 @@ function SingnupForm({ history }) {
             {error}
           </p>
         )}
-        <Link to="/login">Login</Link>
+        <Link to={`/login?redirect=${redirect}`}>Login</Link>
       </form>
     </div>
   );

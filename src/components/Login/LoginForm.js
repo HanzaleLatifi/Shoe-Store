@@ -5,6 +5,7 @@ import Input from "../../common/Input";
 import { useState } from "react";
 import { loginUser } from "../../services/loginUser";
 import { useAuthAction } from "../../providers/AuthProvider";
+import { useQuery } from "../../hooks/useQuery";
 
 const initialValues = {
   email: "",
@@ -19,13 +20,15 @@ const validationSchema = Yup.object({
 function LoginForm({ history }) {
   const [error, setError] = useState(null);
   const setAuth = useAuthAction();
+  const query = useQuery();
+  const redirect = query.get("redirect") || "/";
 
   const onSubmit = async (values) => {
     try {
       const { data } = await loginUser(values);
       setAuth(data);
       setError(null);
-      history.push("/");
+      history.push(redirect);
     } catch (error) {
       setError(error.response.data.message);
     }
@@ -60,7 +63,7 @@ function LoginForm({ history }) {
             {error}
           </p>
         )}
-        <Link to="/signup">signup</Link>
+        <Link to={`/signup?redirect=${redirect}`}>signup</Link>
       </form>
     </div>
   );
