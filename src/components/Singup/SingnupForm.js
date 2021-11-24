@@ -4,8 +4,8 @@ import * as Yup from "yup";
 import Input from "../../common/Input";
 import { signupUser } from "../../services/signupUser";
 import "./SiqnupForm.css";
-import { useState } from "react";
-import { useAuthAction } from "../../providers/AuthProvider";
+import { useState, useEffect } from "react";
+import { useAuth, useAuthAction } from "../../providers/AuthProvider";
 import { useQuery } from "../../hooks/useQuery";
 
 const initialValues = {
@@ -29,8 +29,14 @@ const validationSchema = Yup.object({
 function SingnupForm({ history }) {
   const [error, seterror] = useState(null);
   const setAuth = useAuthAction();
+  const auth = useAuth();
   const query = useQuery();
   const redirect = query.get("redirect") || "/";
+
+  useEffect(() => {
+    //if user login . fast go to checkout
+    if (auth) history.push(redirect);
+  }, [auth, redirect]);
 
   const onSubmit = async (values) => {
     const { name, email, phoneNumber, password } = values;

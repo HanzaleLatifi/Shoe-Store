@@ -2,9 +2,9 @@ import { useFormik } from "formik";
 import { Link, withRouter } from "react-router-dom";
 import * as Yup from "yup";
 import Input from "../../common/Input";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { loginUser } from "../../services/loginUser";
-import { useAuthAction } from "../../providers/AuthProvider";
+import { useAuth, useAuthAction } from "../../providers/AuthProvider";
 import { useQuery } from "../../hooks/useQuery";
 
 const initialValues = {
@@ -21,7 +21,13 @@ function LoginForm({ history }) {
   const [error, setError] = useState(null);
   const setAuth = useAuthAction();
   const query = useQuery();
+  const auth = useAuth();
   const redirect = query.get("redirect") || "/";
+
+  useEffect(() => {
+    //if user login . fast go to checkout
+    if (auth) history.push(redirect);
+  }, [auth, redirect]);
 
   const onSubmit = async (values) => {
     try {
