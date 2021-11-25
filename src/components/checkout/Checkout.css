@@ -1,0 +1,41 @@
+.checkout-container {
+  max-width: 870px;
+  margin: 8rem auto;
+  min-height: 30vh;
+  font-size: 2rem;
+  background-color: white;
+  border-radius: 0.8rem;
+  padding: 1rem;
+}
+.userData {
+  width: 49%;
+  border: 1px solid blueviolet;
+  padding: 1rem;
+  border-radius: 0.8rem;
+  min-width: 20rem;
+}
+.productData {
+  width: 49%;
+  border: 1px solid blueviolet;
+  padding: 1rem;
+  border-radius: 0.8rem;
+  min-width: 20rem;
+}
+.btn-buy {
+  width: 100%;
+  max-height: 5rem;
+  margin-top: 6rem;
+}
+.cart-empty {
+  margin: 5rem auto;
+  width: 100%;
+  font-size: 3rem;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.cart-empty p {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
